@@ -145,7 +145,7 @@ class Component extends Object {
  * Called before Controller::redirect(). Allows you to replace the URL that will
  * be redirected to with a new URL. The return of this method can either be an array or a string.
  *
- * If the return is an array and contains an 'url' key. You may also supply the following:
+ * If the return is an array and contains an 'url' key you may also supply the following:
  *
  * - `status` The status code for the redirect.
  * - `exit` Whether or not the redirect should exit.
