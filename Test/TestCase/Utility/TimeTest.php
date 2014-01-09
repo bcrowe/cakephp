@@ -1083,8 +1083,8 @@ class TimeTest extends TestCase {
  */
 	public function testFormatNewSyntax() {
 		$time = time();
-		$this->assertEquals($this->Time->format($time), $this->Time->i18nFormat($time));
-		$this->assertEquals($this->Time->format($time, '%c'), $this->Time->i18nFormat($time, '%c'));
+		$this->assertEquals($this->Time->_format($time), $this->Time->i18nFormat($time));
+		$this->assertEquals($this->Time->_format($time, '%c'), $this->Time->i18nFormat($time, '%c'));
 	}
 
 /**
@@ -1128,7 +1128,7 @@ class TimeTest extends TestCase {
 	public function testCorrectTimezoneConversion() {
 		date_default_timezone_set('UTC');
 		$date = '2012-01-01 10:00:00';
-		$converted = Time::format($date, '%Y-%m-%d %H:%M', '', 'Europe/Copenhagen');
+		$converted = Time::_format($date, '%Y-%m-%d %H:%M', '', 'Europe/Copenhagen');
 		$expected = new \DateTime($date);
 		$expected->setTimezone(new \DateTimeZone('Europe/Copenhagen'));
 		$this->assertEquals($expected->format('Y-m-d H:i'), $converted);

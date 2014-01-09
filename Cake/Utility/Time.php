@@ -17,6 +17,8 @@
 namespace Cake\Utility;
 
 use Cake\Core\Configure;
+use \DateTime;
+use \DateTimeZone;
 
 /**
  * Time Helper class for easy use of time data.
@@ -25,7 +27,7 @@ use Cake\Core\Configure;
  *
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/time.html
  */
-class Time {
+class Time extends DateTime {
 
 /**
  * The format to use when formatting a time using `Cake\Utility\Time::nice()`
@@ -80,6 +82,13 @@ class Time {
 	protected static $_time = null;
 
 /**
+  *	Constructor
+  */
+	public function __construct($time = 'now', DateTimeZone $timezone = null) {
+		parent::__construct($time, $timezone === null ? new DateTimeZone('UTC') : $timezone);
+	}
+
+/**
  * Converts a string representing the format for the function strftime and returns a
  * windows safe and i18n aware format.
  *
@@ -90,7 +99,7 @@ class Time {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/time.html#TimeHelper::convertSpecifiers
  */
 	public static function convertSpecifiers($format, $time = null) {
-		if (!$time) {
+		if ($time !== null) {
 			$dateTime = new \DateTime;
 			$time = $dateTime->getTimestamp();
 		}
@@ -921,7 +930,7 @@ class Time {
  * @link http://book.cakephp.org/2.0/en/core-libraries/helpers/time.html#TimeHelper::format
  * @see Cake\Utility\Time::i18nFormat()
  */
-	public static function format($date, $format = null, $default = false, $timezone = null) {
+	public static function _format($date, $format = null, $default = false, $timezone = null) {
 		//Backwards compatible params re-order test
 		$time = static::fromString($format, $timezone);
 
