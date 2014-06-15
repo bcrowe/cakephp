@@ -93,7 +93,7 @@ class FlashComponent extends Component {
 			'key' => $opts['key'],
 			'element' => $opts['element'],
 			'params' => $opts['params']
-		]);
+		]); 
 	}
 
 /**
